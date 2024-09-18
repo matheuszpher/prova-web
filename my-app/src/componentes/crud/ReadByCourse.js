@@ -1,6 +1,6 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
-import "./crud.css"; // Aqui você pode adicionar classes customizadas
+import "./crud.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
@@ -8,12 +8,12 @@ const ReadAlunosByCourse = () => {
   const [alunos, setAlunos] = useState([]);
 
   const cursos = [
-    "Redes de computadores",
-    "Sistemas de informação",
+    "Redes de Computadores",
+    "Sistemas de Informação",
     "Engenharia de Software",
-    "Engenharia da computação",
+    "Engenharia da Computação",
     "Design Digital",
-    "Ciencia da computação",
+    "Ciência da Computação",
   ];
 
   useEffect(() => {
@@ -34,11 +34,11 @@ const ReadAlunosByCourse = () => {
       .map((aluno) => (
         <tr
           key={aluno.id}
-          className={aluno.IRA >= 7 ? "table-success" : "table-danger"} // Aplica verde ou vermelho
+          className={aluno.IRA >= 7 ? "table-success" : "table-danger"}
         >
           <td>{aluno.nome}</td>
-          <td>{aluno.IRA}</td>
-          <td>
+          <td className="col-ira">{aluno.IRA}</td>
+          <td className="col-acoes">
             <button
               className="btn btn-danger"
               onClick={() => handleDelete(aluno.id)}
@@ -60,8 +60,12 @@ const ReadAlunosByCourse = () => {
             <thead>
               <tr>
                 <th scope="col">Nome</th>
-                <th scope="col">IRA</th>
-                <th scope="col">Ações</th>
+                <th scope="col" className="col-ira">
+                  IRA
+                </th>
+                <th scope="col" className="col-acoes">
+                  Ações
+                </th>
               </tr>
             </thead>
             <tbody>{alunosPorCurso(curso)}</tbody>

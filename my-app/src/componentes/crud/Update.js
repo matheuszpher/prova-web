@@ -6,6 +6,7 @@ import "./crud.css";
 import { useNavigate } from "react-router-dom";
 
 const UpdateAluno = () => {
+  // Redireciona após atualizar aluno
   const navigate = useNavigate();
 
   const [id, setId] = useState("");
@@ -13,6 +14,7 @@ const UpdateAluno = () => {
   const [curso, setCurso] = useState("");
   const [IRA, setIRA] = useState("");
 
+  // Função que lida com a atualização do aluno
   const HandleUpdateButton = async (event) => {
     event.preventDefault();
     await axios.put("http://localhost:3001/aluno", {
@@ -21,9 +23,10 @@ const UpdateAluno = () => {
       curso,
       IRA: Number(IRA),
     });
+    // Redireciona para a página de listagem de alunos
     navigate("/aluno/read");
   };
-
+  //Renderiza os inputs necessarios para atualizar o aluno
   return (
     <div>
       <h1>Atualizar aluno</h1>
@@ -36,7 +39,6 @@ const UpdateAluno = () => {
             onChange={(event) => setId(event.target.value)}
             className="form-control"
             type="text"
-            name="nome"
             placeholder="id do aluno"
             id="inputId"
           />
@@ -49,7 +51,6 @@ const UpdateAluno = () => {
             onChange={(event) => setNome(event.target.value)}
             className="form-control"
             type="text"
-            name="nome"
             placeholder="nome do aluno"
             id="inputNome"
           />
@@ -62,7 +63,6 @@ const UpdateAluno = () => {
             onChange={(event) => setCurso(event.target.value)}
             className="form-control"
             type="text"
-            name="curso"
             placeholder="curso"
             id="inputCurso"
           />
@@ -75,9 +75,7 @@ const UpdateAluno = () => {
             className="form-select"
             id="selectIRA"
             placeholder="IRA do aluno"
-            onChange={(event) => {
-              setIRA(event.target.value);
-            }}
+            onChange={(event) => setIRA(event.target.value)}
           ></input>
         </div>
         <div className="buttonSubmit">

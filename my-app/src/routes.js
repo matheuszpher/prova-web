@@ -7,6 +7,10 @@ import UpdateAluno from "./componentes/crud/Update";
 import DeleteAluno from "./componentes/crud/Delete";
 import ReadAlunosByCourse from "./componentes/crud/ReadByCourse";
 
+//Faz a gestão das rotas utilizando o React router dom
+
+//Os components passados serão renderizados no componente Outlet da Home page
+
 const router = createBrowserRouter([
   {
     path: "/",
