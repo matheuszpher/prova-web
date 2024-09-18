@@ -3,29 +3,37 @@ import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
 import "./crud.css";
+import { useNavigate } from "react-router-dom";
 
 const UpdateAluno = () => {
+  const navigate = useNavigate();
+
+  const [id, setId] = useState("");
   const [nome, setNome] = useState("");
   const [curso, setCurso] = useState("");
   const [IRA, setIRA] = useState("");
 
-  const HandleUpdateButton = async () => {
-    await axios.put("http://localhost:3001/aluno", { nome, curso, IRA });
-  };
-  const submitForm = (event) => {
-    console.log("Nome: ", nome, "Curso: ", curso, "IRA: ", IRA);
+  const HandleUpdateButton = async (event) => {
+    event.preventDefault();
+    await axios.put("http://localhost:3001/aluno", {
+      id: Number(id),
+      nome,
+      curso,
+      IRA: Number(IRA),
+    });
+    navigate("/aluno/read");
   };
 
   return (
     <div>
-      <h1>Criar aluno</h1>
-      <form onSubmit={submitForm}>
-      <div className="mb-3">
+      <h1>Atualizar aluno</h1>
+      <form onSubmit={HandleUpdateButton}>
+        <div className="mb-3">
           <label className="form-label" htmlFor="inputId">
             Id:
           </label>
           <input
-            onChange={(event) => setNome(event.target.value)}
+            onChange={(event) => setId(event.target.value)}
             className="form-control"
             type="text"
             name="nome"
@@ -67,7 +75,6 @@ const UpdateAluno = () => {
             className="form-select"
             id="selectIRA"
             placeholder="IRA do aluno"
-
             onChange={(event) => {
               setIRA(event.target.value);
             }}
@@ -79,7 +86,7 @@ const UpdateAluno = () => {
             className="btn btn-primary"
             type="submit"
           >
-            Criar
+            Atualizar
           </button>
         </div>
       </form>

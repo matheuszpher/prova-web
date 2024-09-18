@@ -5,22 +5,24 @@ import CreateAluno from "./componentes/crud/Create";
 import ReadAlunos from "./componentes/crud/Read";
 import UpdateAluno from "./componentes/crud/Update";
 import DeleteAluno from "./componentes/crud/Delete";
+import ReadAlunosByCourse from "./componentes/crud/ReadByCourse";
 
 const router = createBrowserRouter([
-    {
-        path: "/",
-        element: <Home />,
-        children: [
-            { path: "aluno/create", element: <CreateAluno /> },
-            { path: "aluno/read", element: <ReadAlunos /> },
-            {path: "aluno/update", element: <UpdateAluno />},
-            { path: "aluno/delete", element: <DeleteAluno />}
-        ],
-    },
+  {
+    path: "/",
+    element: <Home />,
+    children: [
+      { path: "aluno/create", element: <CreateAluno /> },
+      { path: "aluno/read", element: <ReadAlunos /> },
+      { path: "aluno/update", element: <UpdateAluno /> },
+      { path: "aluno/delete", element: <DeleteAluno /> },
+      { path: "aluno/readByCourse", element: <ReadAlunosByCourse /> },
+    ],
+  },
 ]);
 
 const Main = () => {
-    return <RouterProvider router={router} />;
+  return <RouterProvider router={router} />;
 };
 
 export default Main;

@@ -3,23 +3,28 @@ import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
 import "./crud.css";
+import { useNavigate } from "react-router-dom";
 
 const CreateAluno = () => {
+  const navigate = useNavigate();
   const [nome, setNome] = useState("");
   const [curso, setCurso] = useState("");
   const [IRA, setIRA] = useState("");
 
-  const HandleCreateButton = async () => {
-    await axios.post("http://localhost:3001/aluno", { nome, curso, IRA });
-  };
-  const submitForm = (event) => {
-    console.log("Nome: ", nome, "Curso: ", curso, "IRA: ", IRA);
+  const HandleCreateButton = async (event) => {
+    event.preventDefault();
+    await axios.post("http://localhost:3001/aluno", {
+      nome,
+      curso,
+      IRA: Number(IRA),
+    });
+    navigate("/aluno/read");
   };
 
   return (
     <div>
       <h1>Criar aluno</h1>
-      <form onSubmit={submitForm}>
+      <form onSubmit={HandleCreateButton}>
         <div className="mb-3">
           <label className="form-label" htmlFor="inputNome">
             Nome:
